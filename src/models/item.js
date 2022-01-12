@@ -24,6 +24,10 @@ const itemSchema = new mongoose.Schema(
 		price: {
 			type: Number,
 			required: true
+		},
+		deleted: {
+			type: Boolean,
+			default: false
 		}
 	},
 	{

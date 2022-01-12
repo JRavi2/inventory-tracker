@@ -50,7 +50,7 @@ const deleteItem = e => {
 		redirect: 'follow'
 	};
 
-	fetch(`http://1d85-150-230-238-164.ngrok.io/items/${e.target.parentNode.id}`, requestOptions)
+	fetch(`/items/${e.target.parentNode.id}`, requestOptions)
 		.then(response => response.text())
 		.then(result => {
 			console.log(result)

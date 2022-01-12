@@ -16,10 +16,20 @@ router.post("/items", async (req, res) => {
 	}
 });
 
-// List all the Items
+// List all non deleted Items
 router.get("/items", async (req, res) => {
 	try {
-		const items = await Item.find({});
+		const items = await Item.find({deleted: false});
+		res.status(200).send(items);
+	} catch (err) {
+		res.status(500).send(err);
+	}
+});
+
+// List all deleted items
+router.get("/items/deleted", async (req, res) => {
+	try {
+		const items = await Item.find({deleted: true});
 		res.status(200).send(items);
 	} catch (err) {
 		res.status(500).send(err);
@@ -72,11 +82,40 @@ router.patch("/items/:id", async (req, res) => {
 // Delete an Item
 router.delete("/items/:id", async (req, res) => {
 	try {
-		const item = await Item.findOneAndDelete({
+		const item = await Item.findOne({
 			_id: req.params.id
 		});
 
 		if (!item) return res.status(404).send();
+
+		if (item.deleted) {
+			item.remove();
+		} else {
+			item.deleted = true;
+			item.save();
+		}
+
+		res.status(200).send(item);
+	} catch (err) {
+		res.status(500).send(err);
+	}
+});
+
+// Undelete an Item
+router.post("/items/undelete/:id", async (req, res) => {
+	try {
+		const item = await Item.findOne({
+			_id: req.params.id
+		});
+
+		if (!item) return res.status(404).send();
+
+		if (item.deleted) {
+			item.deleted = false;
+			item.save();
+		} else {
+			return res.send(400).send({error: "Item not deleted"});
+		}
 
 		res.status(200).send(item);
 	} catch (err) {
