@@ -92,6 +92,7 @@ router.delete("/items/:id", async (req, res) => {
 			item.remove();
 		} else {
 			item.deleted = true;
+			item.deletionComment = req.body.comment;
 			item.save();
 		}
 

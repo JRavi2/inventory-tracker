@@ -45,8 +45,18 @@ const editItem = e => {
 }
 
 const deleteItem = e => {
+	const comment = prompt("Deletion comment:");
+
+	let myHeaders = new Headers();
+	myHeaders.append("Content-Type", "application/json");
+	let raw = JSON.stringify({
+		"comment": comment,
+	});
+
 	var requestOptions = {
 		method: 'DELETE',
+		body: raw,
+		headers: myHeaders,
 		redirect: 'follow'
 	};
 

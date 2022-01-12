@@ -28,6 +28,10 @@ const itemSchema = new mongoose.Schema(
 		deleted: {
 			type: Boolean,
 			default: false
+		},
+		deletionComment: {
+			type: String,
+			trim: true,
 		}
 	},
 	{

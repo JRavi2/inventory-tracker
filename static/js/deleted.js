@@ -6,7 +6,8 @@ const createItemDiv = item => {
 	return `<h3>${item.name}</h3>
 		<p>${item.description}</p>
 		<p>Price: ${item.price}</p>
-		<p>Units: ${item.units}</p>`
+		<p>Units: ${item.units}</p>
+		<p>Deletion Comment: ${item.deletionComment}</p>`
 }
 
 const undeleteItem = e => {
