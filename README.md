@@ -3,7 +3,9 @@
 This is an inventory tracking application built using Node. All of the backend code can be found in the `src` directory and the frontend code in the `static` directory.
 The list of various endpoints can be found in the [endpoints.md](./endpoints.md) file.
 
-## How to Run
+The live site deployed on heroku can be found here - https://rj-inventory-tracker.herokuapp.com/
+
+## How to Run Locally
 
 Install [docker](https://docs.docker.com/engine/install/) and [docker-compose](https://docs.docker.com/compose/install/) for your particular OS.
 
