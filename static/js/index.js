@@ -2,6 +2,7 @@ const itemList = document.getElementById("item-list");
 const addEditModal = document.getElementById("add-edit-modal");
 const span = document.getElementsByClassName("close")[0];
 const addEditForm = document.getElementById("add-edit-form");
+const addEditFormTitle = document.getElementById("form-title");
 const addBtn = document.getElementById("add-btn");
 
 const nameField = document.getElementById("inp-name");
@@ -28,11 +29,18 @@ span.onclick = () => {
 
 addBtn.onclick = () => {
 	addEditModal.style.display = "block";
+	addEditFormTitle.innerHTML = "Create Item";
+	nameField.value = "";
+	descField.value = "";
+	priceField.value = "";
+	unitsField.value = "";
+	sellerField.value = "";
 	isAdd = true;
 }
 
 const editItem = e => {
 	addEditModal.style.display = "block";
+	addEditFormTitle.innerHTML = "Edit";
 	isAdd = false;
 	const item = globalItemList.find(it => it._id === e.target.parentNode.id);
 	nameField.value = item.name;
